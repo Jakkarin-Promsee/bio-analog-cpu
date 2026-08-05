@@ -41,8 +41,11 @@ that hasn't loaded — run `/memory` to see what's in scope.)*
 
 | Working on… | Load |
 | --- | --- |
-| **The live line (draft 6.0 — SCFF + GD)** | [`draft6.0/CLAUDE.md`](draft6.0/CLAUDE.md) — operating context + current status |
-| The whole picture, cold | [`draft6.0/context.md`](draft6.0/context.md) |
+| **The live line (draft 7.0 — the loop of thought, SET ZERO)** | [`draft7.0/CLAUDE.md`](draft7.0/CLAUDE.md) — operating context; arrive via [`draft7.0/docs/handoff.md`](draft7.0/docs/handoff.md) |
+| **What draft 7.0 is actually building** (the standing candidate) | [`draft7.0/docs/the-thought.md`](draft7.0/docs/the-thought.md) — frozen record · working version: [`draft7.0/notes/the-model.md`](draft7.0/notes/the-model.md) |
+| Why we turned away from draft 6.0 (2026-08-05) | [`draft7.0/docs/context.md`](draft7.0/docs/context.md) |
+| **Draft 6.0 — the first organ, DONE & FOLDED** (P1–11, not discarded) | [`draft6.0/CLAUDE.md`](draft6.0/CLAUDE.md) — operating context + final status |
+| The draft-6 picture, cold | [`draft6.0/context.md`](draft6.0/context.md) |
 | Superseded history (draft 5 — attribution era) | [`draft5.0/CLAUDE.md`](draft5.0/CLAUDE.md) |
 | The idea journey (drafts 1.0 → 5.1) | [`draft-journey/`](draft-journey/README.md) |
 | Why the project exists / the person | [`docs/essence/the-essence2.md`](docs/essence/the-essence2.md) · [`docs/draft/project-personal.md`](docs/draft/project-personal.md) |
