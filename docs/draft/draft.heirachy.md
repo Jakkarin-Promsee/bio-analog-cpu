@@ -15,33 +15,33 @@ For the narrative version of the same arc (mind stones, breakthroughs, why each 
 
 ## Version Snapshot
 
-| File                | Type        | One-line summary                                                                                  |
-| ------------------- | ----------- | ------------------------------------------------------------------------------------------------- |
-| `draft1.0.md`       | Main        | Raw brainstorm — personal narrative, first architecture sketch, unfinished                        |
-| `draft1.5.md`       | Main        | Grammar/clarity pass on draft1.0, no new architecture                                             |
-| `draft1.0.q1.md`    | Q&A         | Answers to 12 clarifying questions on v1                                                          |
-| `draft2.0.md`       | Main        | First formal design — renamed components, operator layer, scope locked to Python sim              |
-| `draft2.1.md`       | Main        | Working copy of draft2.0, no structural difference                                                |
-| `draft2.2.md`       | Main        | draft2.0 + community commentary and extended ideas                                                |
-| `draft2.3.x1.md`    | Brainstorm  | Deep dive into analog storage alternatives, stages 0–4 (deferred)                                 |
-| `draft2.3.x2.md`    | Brainstorm  | Continuation of x1, stages 5–8 (deferred)                                                         |
-| `draft3.0.md`       | Main        | Major rewrite — distribution-measurement, decentralized per-scap update                           |
-| `draft3.0.q1.md`    | Q&A         | Reactions to v3 feedback — hierarchical diffusion and SpecialGeneralist first introduced          |
-| `draft3.1.md`       | Main        | Hierarchical diffusion formalized, Brainstem named, two-timescale Limbic Loop, first §22 lock list |
-| `draft3.1.q1.md`    | Q&A         | Q&A on draft3.1 — early red-pen feedback before draft3.2                                          |
-| `draft3.2.md`       | Main        | Honest-framing pivot — attribution-based learning replaces "approximate backprop" claim           |
-| `draft3.2.q1.md`    | Q&A         | Q&A on draft3.2 — discussion of the attribution vs gradient framing                               |
-| `draft3.3.md`       | Main        | Pulse_width vs momentum disambiguation; per-Column independent buses                              |
-| `draft3.3.r1.md`    | Reflextion  | Reflection on draft3.3 before opening draft4                                                      |
-| `draft4.0.md`       | Main        | Five-level hierarchy locked — **Lobe added**, multi-branch DAG, residuals as first-class defense  |
-| `draft4.0.x1.md`    | Brainstorm  | Exploratory digression around draft4.0                                                            |
-| `draft4.1.x1.md`    | Brainstorm  | External-critique notes that fed into draft4.1                                                    |
-| `draft4.1.md`       | Main        | External critique integrated — Forward_Sign_SRAM, Physical Saturation, §15 Analog Robustness, PGA |
-| `draft5.0.md`       | Main        | Structural rewrite for stranger reader — mechanism (§2) before modules, §3 worked example         |
-| `draft5.0.x1.md`    | Brainstorm  | Brainstorm during the draft5.0 restructure                                                        |
-| `draft5.1-full.md`  | Main (ref)  | Final polish — §1.4 bio narrative, §3 XOR-convention bug fix, §3.6 ambiguity resolved (unsplit)    |
-| `draft5.1-1.md`     | Main (Part) | Canonical spec Part 1 — §0–§19, §22–§23. **Now in `draft5.0/` (moved at the draft-6.0 pivot; was at repo root).** |
-| `draft5.1-2.md`     | Main (Part) | Canonical spec Part 2 — §20 simulation, §21 future tracks. **Now in `draft5.0/`.**         |
+| File                   | Type              | One-line summary                                                                                                                                |
+| ---------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `draft1.0.md`          | Main              | Raw brainstorm — personal narrative, first architecture sketch, unfinished                                                                      |
+| `draft1.5.md`          | Main              | Grammar/clarity pass on draft1.0, no new architecture                                                                                           |
+| `draft1.0.q1.md`       | Q&A               | Answers to 12 clarifying questions on v1                                                                                                        |
+| `draft2.0.md`          | Main              | First formal design — renamed components, operator layer, scope locked to Python sim                                                            |
+| `draft2.1.md`          | Main              | Working copy of draft2.0, no structural difference                                                                                              |
+| `draft2.2.md`          | Main              | draft2.0 + community commentary and extended ideas                                                                                              |
+| `draft2.3.x1.md`       | Brainstorm        | Deep dive into analog storage alternatives, stages 0–4 (deferred)                                                                               |
+| `draft2.3.x2.md`       | Brainstorm        | Continuation of x1, stages 5–8 (deferred)                                                                                                       |
+| `draft3.0.md`          | Main              | Major rewrite — distribution-measurement, decentralized per-scap update                                                                         |
+| `draft3.0.q1.md`       | Q&A               | Reactions to v3 feedback — hierarchical diffusion and SpecialGeneralist first introduced                                                        |
+| `draft3.1.md`          | Main              | Hierarchical diffusion formalized, Brainstem named, two-timescale Limbic Loop, first §22 lock list                                              |
+| `draft3.1.q1.md`       | Q&A               | Q&A on draft3.1 — early red-pen feedback before draft3.2                                                                                        |
+| `draft3.2.md`          | Main              | Honest-framing pivot — attribution-based learning replaces "approximate backprop" claim                                                         |
+| `draft3.2.q1.md`       | Q&A               | Q&A on draft3.2 — discussion of the attribution vs gradient framing                                                                             |
+| `draft3.3.md`          | Main              | Pulse_width vs momentum disambiguation; per-Column independent buses                                                                            |
+| `draft3.3.r1.md`       | Reflextion        | Reflection on draft3.3 before opening draft4                                                                                                    |
+| `draft4.0.md`          | Main              | Five-level hierarchy locked — **Lobe added**, multi-branch DAG, residuals as first-class defense                                                |
+| `draft4.0.x1.md`       | Brainstorm        | Exploratory digression around draft4.0                                                                                                          |
+| `draft4.1.x1.md`       | Brainstorm        | External-critique notes that fed into draft4.1                                                                                                  |
+| `draft4.1.md`          | Main              | External critique integrated — Forward_Sign_SRAM, Physical Saturation, §15 Analog Robustness, PGA                                               |
+| `draft5.0.md`          | Main              | Structural rewrite for stranger reader — mechanism (§2) before modules, §3 worked example                                                       |
+| `draft5.0.x1.md`       | Brainstorm        | Brainstorm during the draft5.0 restructure                                                                                                      |
+| `draft5.1-full.md`     | Main (ref)        | Final polish — §1.4 bio narrative, §3 XOR-convention bug fix, §3.6 ambiguity resolved (unsplit)                                                 |
+| `draft5.1-1.md`        | Main (Part)       | Canonical spec Part 1 — §0–§19, §22–§23. **Now in `draft5.0/` (moved at the draft-6.0 pivot; was at repo root).**                               |
+| `draft5.1-2.md`        | Main (Part)       | Canonical spec Part 2 — §20 simulation, §21 future tracks. **Now in `draft5.0/`.**                                                              |
 | `draft5.1-2.verify.md` | Plan (superseded) | Re-draft of the §20 plan, intuition-first, phase by phase. Was the live plan before the draft-6.0 pivot; now history (live plan = `draft6.0/`). |
 
 > The split into `draft5.1-1.md` / `draft5.1-2.md` exists only because the markdown-to-PDF tool fails on the unsplit length. Content is identical to `draft-journey/draft5.1-full.md`. Section numbers are continuous across both parts.
