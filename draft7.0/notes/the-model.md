@@ -257,4 +257,47 @@ rungs live in **fact**.
 
 *(free space. dump things here first; sort later.)*
 
+### 2026-08-06 — the first rung is where most of the value is made
+
+From the harness. That project started because a Fable 5 system prompt leaked — so there was a *template*, and the
+game became tweak-and-measure. Days went into one thing and it produced **"the skill of scoping the problem"**:
+instead of *go search everything*, the instruction became **"read `CLAUDE.md` / `README.md` first to understand"** —
+and it got dramatically better. Same model, same tools, strictly *less* searching. What changed was **the entry
+rung.**
+
+So the ladder rule has a positive form, and it's stronger than the negative one already written:
+
+> **the negative form (already in §2):** never open with the final question
+> **the positive form (new):** *the first rung disproportionately decides whether the whole loop works* — the rest
+> is memory output accumulating facts on top of it
+
+And the quality criterion isn't *how many facts* — it's **how much space each fact eliminated**:
+
+> ค่อยๆ scope ลงไปเรื่อยๆ ต้องการ right-feeling ในการเพิ่ม fact ที่มีคุณภาพให้เยอะที่สุด ไม่ใช่ไปเก็บแต่ wrong feeling ให้รก
+
+**Why a bad first rung poisons everything:** open too fine (*"is it a mandarin?"*) and every fact you collect is a
+near-miss or a rejection — low information, and the register fills with clutter. Open at the right coarseness
+(*"is it a fruit?"*) and the first match prunes a huge region, so every later fact is high-quality.
+
+**The asymmetry that follows:** a *positive* match ("it is round") cuts to a region. A *negative* ("not an apple")
+removes one item. **They are not worth the same** and the register shouldn't treat them as if they were. → this is
+axis D's constructive-rejection problem seen from the register's side instead of the query's.
+
+**Open question this raises: does the fact register ever forget?** If it only grows, it becomes the harness's
+context-window problem. *(And the harness already solved that — turn reflection compresses a finished turn and
+replaces the raw churn. Fifth time an answer was already built over there.)*
+
+**⚠ What does NOT transfer.** In the harness the lever was **a sentence** — language extracts performance, and
+"read the README first" reshaped behaviour for free. **On images there is no sentence.** Nothing can be *told* to
+check the coarse property first. So the ordering has to come from **structure** (connection count / information
+gain), which is exactly what §4.2 already does — the design is right *because* the prompt lever doesn't exist here.
+
+**⚠ And the evidence doesn't transfer either.** The LLM already knew what a README is and what "understand the
+project first" means — a pretrained prior. The image loop has **no prior at all** telling it that *round* is a
+coarser question than *rough peel*. That has to come out of the data. Still axis H, still unverified.
+
+*To check:* **HNSW enters at the coarsest layer and descends — its whole performance comes from the entry level,
+and entering at the bottom is a linear scan.** That is this idea, shipping in production, in a system with no
+semantics at all. → [`reading-checklist.md`](reading-checklist.md) Day 2.
+
 -
