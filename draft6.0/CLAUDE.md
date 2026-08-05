@@ -1,5 +1,12 @@
-# draft 6.0 — operating context (the live line)
+# draft 6.0 — operating context (the first organ — DONE & FOLDED)
 
+> 🔻 **NOT the live line any more (2026-08-05).** P1–11 completed and froze the neocortex organ; the author then
+> **set zero** and opened [`../draft7.0/`](../draft7.0/README.md) to find the **loop of thought** core first.
+> Draft 6.0 is **folded, not discarded** — it is picked back up once a loop core exists. Before proposing any new
+> draft-6 work, read [`../draft7.0/docs/handoff.md`](../draft7.0/docs/handoff.md) (why the turn happened, and the tripwires).
+> Two draft-6 claims are now **struck**: goodness-as-the-correctness-feeling and tap-drift-as-the-feeling — the
+> north-star dossier below still contains the old wrong version.
+>
 > Auto-loads when you work in `draft6.0/`. This is the **draft's mental model + current status + map** — the file
 > that changes as work advances (the root `CLAUDE.md` stays stable). Cold-start narrative: [`context.md`](context.md).
 > Reading budget: load a phase's `phaseN/README.md` for its gist; open cards/code only to modify them; heavy
