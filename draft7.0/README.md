@@ -78,8 +78,8 @@ is even right is the first job.
 
 - **[`docs/`](docs/) — frozen.** The first decision, tagged and dated, with the reasoning and the arguments that
   were withdrawn. Every agent's base. Supersede in place; never quietly rewrite.
-- **[`notes/`](notes/) — live.** The prototype being polished, plus the reading checklist. No ceremony, open slots,
-  edited freely. **When something here hardens, it gets promoted into `docs/` with a date.**
+- **[`notes/`](notes/) — live.** The prototype being polished, the reading checklist, and the advisor manual. No
+  ceremony, open slots, edited freely. **When something here hardens, it gets promoted into `docs/` with a date.**
 
 The same picture lives in both on purpose: [`docs/the-thought.md`](docs/the-thought.md) is the record,
 [`notes/the-model.md`](notes/the-model.md) is the working version.

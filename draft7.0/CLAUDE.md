@@ -153,6 +153,7 @@ repo's 3-layer context hierarchy, and `README.md` is the folder's front door.)*
 | Want… | Read |
 | --- | --- |
 | **What I'm building right now, in plain terms** (living, editable) | [`notes/the-model.md`](notes/the-model.md) |
+| How to work with the department advisors on this | [`notes/advisor.md`](notes/advisor.md) |
 | **⚑ THE STANDING CANDIDATE — what a thought is, the loop's shape, the arena, the base spec** (frozen record) | [`docs/the-thought.md`](docs/the-thought.md) `[STANDING]` `[AUTHOR]` |
 | **Why we turned — the whole story, cold** (written pre-candidate; §7 superseded) | [`context.md`](docs/context.md) |
 | **The conversation that produced the turn** (historical, 2026-08-05 — do not update) | [`the-turn.md`](docs/the-turn.md) |
