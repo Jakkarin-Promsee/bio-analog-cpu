@@ -1,9 +1,11 @@
 # draft 6.0 — operating context (the first organ — DONE & FOLDED)
 
 > 🔻 **NOT the live line any more (2026-08-05).** P1–11 completed and froze the neocortex organ; the author then
-> **set zero** and opened [`../draft7.0/`](../draft7.0/README.md) to find the **loop of thought** core first.
-> Draft 6.0 is **folded, not discarded** — it is picked back up once a loop core exists. Before proposing any new
-> draft-6 work, read [`../draft7.0/docs/handoff.md`](../draft7.0/docs/handoff.md) (why the turn happened, and the tripwires).
+> **set zero** and opened [`../draft7.0/`](../draft7.0/README.md). That draft's direction was **replaced on
+> 2026-08-10** and is now **bounded-bandwidth visual reasoning** — see [`../draft7.0/docs/direction.md`](../draft7.0/docs/direction.md).
+> Draft 6.0 is **folded, not discarded** — it is picked back up once that line has a core. Before proposing any new
+> draft-6 work, read the turn's history in [`../draft7.0/.archive/README.md`](../draft7.0/.archive/README.md)
+> (why the turn happened, and the tripwires).
 > Two draft-6 claims are now **struck**: goodness-as-the-correctness-feeling and tap-drift-as-the-feeling — the
 > north-star dossier below still contains the old wrong version.
 >

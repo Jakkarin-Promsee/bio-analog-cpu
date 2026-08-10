@@ -41,9 +41,10 @@ that hasn't loaded — run `/memory` to see what's in scope.)*
 
 | Working on… | Load |
 | --- | --- |
-| **The live line (draft 7.0 — the loop of thought, SET ZERO)** | [`draft7.0/CLAUDE.md`](draft7.0/CLAUDE.md) — operating context; arrive via [`draft7.0/docs/handoff.md`](draft7.0/docs/handoff.md) |
-| **What draft 7.0 is actually building** (the standing candidate) | [`draft7.0/docs/the-thought.md`](draft7.0/docs/the-thought.md) — frozen record · working version: [`draft7.0/notes/the-model.md`](draft7.0/notes/the-model.md) |
-| Why we turned away from draft 6.0 (2026-08-05) | [`draft7.0/docs/context.md`](draft7.0/docs/context.md) |
+| **The live line (draft 7.0 — bounded-bandwidth visual reasoning)** | [`draft7.0/CLAUDE.md`](draft7.0/CLAUDE.md) — operating context |
+| **What draft 7.0 is actually building** (the direction, 2026-08-10) | [`draft7.0/docs/direction.md`](draft7.0/docs/direction.md) — the latent predicts `(l, s)`; Hopfield address-retrieval is its other half. Binding/slots = later |
+| **What is already known / closed / open** — check before proposing anything | [`draft7.0/notes/vault/INDEX.md`](draft7.0/notes/vault/INDEX.md) — depth map over 15 study notes (~770 KB). **Read this, not the raw files** |
+| Why we turned away from draft 6.0 (2026-08-05), and the superseded loop-of-thought position | [`draft7.0/.archive/README.md`](draft7.0/.archive/README.md) — history, never cited as current |
 | **Draft 6.0 — the first organ, DONE & FOLDED** (P1–11, not discarded) | [`draft6.0/CLAUDE.md`](draft6.0/CLAUDE.md) — operating context + final status |
 | The draft-6 picture, cold | [`draft6.0/context.md`](draft6.0/context.md) |
 | Superseded history (draft 5 — attribution era) | [`draft5.0/CLAUDE.md`](draft5.0/CLAUDE.md) |
@@ -132,7 +133,7 @@ Biological names are **structural, not decorative**. Don't suggest renaming to "
 
 ## When in doubt
 
-- **What we're building** → [`draft6.0/CLAUDE.md`](draft6.0/CLAUDE.md) + [`draft6.0/idea/main.ideas.v1.md`](draft6.0/idea/main.ideas.v1.md) (the decision record) — not the draft-5.1 files.
+- **What we're building** → [`draft7.0/docs/direction.md`](draft7.0/docs/direction.md) (the live position). The folded first organ: [`draft6.0/CLAUDE.md`](draft6.0/CLAUDE.md) + [`draft6.0/idea/main.ideas.v1.md`](draft6.0/idea/main.ideas.v1.md) — not the draft-5.1 files.
 - **How to talk to the author** → [`docs/draft/project-personal.md`](docs/draft/project-personal.md).
 - **Why an old thing was decided** → [`docs/draft/project-history.md`](docs/draft/project-history.md) (5.1 era) — but the learning rule was rebuilt; don't re-defend dead decisions.
 - **Arithmetic / signs** → run the numbers. The whole draft-5 collapse was a missing **sign** (direction); the §3.3/§3.7 XOR sign bug lived four drafts because nobody computed `+ XOR +`. Direction bugs are this project's recurring silent killer — stay paranoid.
