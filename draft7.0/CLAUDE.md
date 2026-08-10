@@ -1,80 +1,90 @@
-# draft 7.0 — operating context (the new live line: the loop of thought)
+# draft 7.0 — operating context (the live line: bounded-bandwidth visual reasoning)
 
-> Auto-loads when you work in `draft7.0/`. Draft 7.0 is a **SET ZERO**: the search for the *core mechanism of a
-> loop of thought*, run **without the analog / online / forward-only constraints** — which come back later, one at
-> a time. Draft 6.0 is **folded, not discarded.**
+> Auto-loads when you work in `draft7.0/`. **Read [`docs/direction.md`](docs/direction.md) before designing,
+> proposing, or arguing anything.** Draft 6.0 is folded, not discarded.
 >
-> **Evidence status of this entire draft: ZERO.** Nothing here has been measured. Every statement carries a tag
-> (below). A future agent that reads a `[CLAIM]` and treats it as a result has already broken the draft.
-
----
-
-## What draft 7.0 is
-
-**The question:** how does a mind hold something in front of it, call candidates from memory, reject them, and
-*keep going until a self-generated signal says stop* — at the level of **architecture**, not at the level of a
-language model narrating its own steps (CoT).
-
-**Why it is a separate draft:** draft 6.0 built and validated the **first organ** (the neocortex: SCFF bulk +
-closed-form namer) and measured it against the metrics the continual-learning field shares. Those metrics are
-real, but **none of them can ever show whether a thinking loop is buildable.** Eleven phases of good results
-produced zero evidence about the north star. That is the drift that triggered this draft — see
-[`context.md`](docs/context.md).
-
-**What is being searched for, in one line:** a loop whose **query changes when a candidate is rejected**, whose
-**goal tightens when a candidate is accepted**, and a **self-generated signal that decides which of the two
-happens** — everything else (storage, similarity, retrieval) is available off the shelf. `[CLAIM]`
-
----
-
-## ⚑ The standing candidate — the FIRST decision, not the final one
-
-**Everything in this draft now points at one big picture.** It was adopted 2026-08-06 and it lives in
-[`the-thought.md`](docs/the-thought.md). Read that file before designing, reading or proposing anything.
-
-**In three lines** `[STANDING]`:
-
-1. **What a thought is** — a thesis in three parts: **goal**, an **accumulating fact register**, and
-   `f(goal, fact)` returned from memory. Concepts are **bundles of attributes** in a space where meaning adds and
-   subtracts; a word is only the shared-world handle for a bundle. → [`the-thought.md`](docs/the-thought.md) §1–3
-2. **What the loop is** — **two motions**: hold the goal and accumulate facts until memory matches, then **tighten
-   the goal's scope** and run again. And **the ladder rule**: never open with the final question —
-   *fruit? → orange? → mandarin?* → [`the-thought.md`](docs/the-thought.md) §4–5
-3. **Where it runs** — an **arena, not a benchmark**: the front half of a CNN supplies input numbers that already
-   carry meaning, the back half supplies output numbers that already carry meaning, and the loop lives between
-   them, given practice at thinking **with nothing hinted to it** — no language, no pre-digested abstraction.
-   Plus a **read-bandwidth limit** so iteration is structurally necessary. → [`the-thought.md`](docs/the-thought.md) §9.2, §9.5
-
-**Why the whole draft points one way — the author's reason, verbatim:**
-
-> เหตุผลคือ มันจะเถียงกันไม่ได้ ถ้าไม่มี candidate ที่เป็นภาพใหญ่จริงๆ
+> **Evidence status of every mechanism in this draft: ZERO.** Nothing here has been run. Every statement carries a
+> tag. An agent that reads a `[CLAIM]` and treats it as a result has already broken the draft.
 >
-> หัวข้อที่ใช้ตอนนี้ **ไม่ใช่ final decision แต่มันคือ first decision** ก่อนกุจะไปทำ research เพื่อหา candidate มาสู้มัน
-
-**How a standing candidate is treated — the rule that makes this safe:**
-
-- It is held **because research needs a target to attack**, not because it is proven. Evidence for it is still zero.
-- It is **replaced by a better candidate, never by an argument.** "I don't like this" is not a move. *"Here is a
-  rival big picture and here is why it is better"* is.
-- Every document in this draft **states it as the current position** and marks its own disagreements as such,
-  rather than each file quietly holding its own frame. That mess is what this pass fixed.
-- When a rival wins, the standing candidate is **replaced wholesale and dated** — not patched into a hybrid nobody
-  chose.
+> **⚠ 2026-08-10 — the direction was replaced wholesale.** The previous position (the loop of thought: goal + fact
+> register + `f(goal, fact)`, two motions, the ladder rule, the CNN-halves arena) is in
+> [`.archive/`](.archive/README.md). Do not cite it as current. Do not reconstruct it.
 
 ---
 
-## Evidence tags — used in every file in this draft
+## What draft 7.0 is, now
+
+**The question:**
+
+> ### "ต้อง optimize ยังไง ถ้า attention size เล็ก แต่โมเดลเลือกได้ว่าจะมองอะไรและจดอะไร"
+
+*How do you optimize when attention size is small, but the model chooses what to look at and what to write down?*
+Outside name: **bounded-bandwidth visual reasoning**.
+
+**Underneath it, the real question:** *what is latent space, and how do you build one that does real work?*
+
+**Why this and not the old picture.** Latent reasoning works in text and **fails in images** — settled by causal
+mediation (Li et al., ICML 2026): latent visual tokens are placeholders, `α ≈ 0`, `β ≈ 0`. The cause is not
+training. **An image can be classified in parallel without depth, so a 1-hop pretrained shortcut beats a 2-hop path
+starting from random, and the optimizer is right to prefer it.** Therefore **the objective is what has to change**,
+not the architecture — and the read has to be bandwidth-limited so that iteration is an *information bound* rather
+than a hope.
+
+**ONE thing is being built** `[STANDING]` — `s2`'s **latent predicts position AND scale `(l, s)`**. It has two
+halves because it answers two questions, but it is one loop:
+
+| | Half | What it does |
+| --- | --- | --- |
+| **the hand** | **latent predicts `(l, s)`** — §3.1 | *how a look is taken.* `z_t → (l_t, s_t) → ρ(x, l_t, s_t) → z_{t+1}`, read from an **image pyramid** so a wide `s` is genuinely blurry and the model cannot cheat by zooming out forever |
+| **the brain** | **associative retrieval of an address** — §3.2 | *where to look next.* `l = P·softmax(β Mᵀq)` on a thumbnail — modern Hopfield, but it returns a **coordinate** instead of content. No gradient walk, no wall, no RL |
+
+**Build order: §3.1 with a plain MLP first, then swap in §3.2 as a single-variable change.** → [`docs/direction.md`](docs/direction.md) §3
+
+**⚠ `s1`'s object-bound dynamic latent (slot attention / binding) is §3.3 — LATER, NOT NOW.** It is the
+multi-latent generalization of the same idea and it is real, but one acting latent is enough to test the core
+claim. The author's scoping: *"กุไม่ได้จะ pick หลายๆทำในทีเดียว ตอนนี้ที่กุเล็งไว้อย่างเเรกคือ s2 … ก่อน เพราะว่ามันใหญ่ที่สุด"*
+**Any plan that runs binding and `(l, s)` at the same time has misread this draft.**
+
+---
+
+## Three surfaces. Do not mix them.
+
+| | [`docs/`](docs/) | [`notes/vault/`](notes/vault/) | [`notes/`](notes/) |
+| --- | --- | --- | --- |
+| **What** | The **frozen position** — [`direction.md`](docs/direction.md), dated and tagged | The **evidence base** — 15 study notes, ~770 KB, plus [`INDEX.md`](notes/vault/INDEX.md) over them | The **live working surface** |
+| **Who for** | Every agent's base. Read this to know what the position *is* | Anyone who needs to know what is already known, closed, or read | The author, mid-thought |
+| **Editing** | Careful and dated. **Supersede in place, never quietly rewrite** | The notes are his study record — don't rewrite them. `INDEX.md` is maintained | Free |
+
+Plus [`.archive/`](.archive/README.md) — the pre-2026-08-10 position. **Read-only, never cited as current.**
+
+### ⚠ The reading budget — the rule that keeps sessions cheap
+
+**The vault is ~770 KB. Never read raw vault files to "get oriented."** The whole point of
+[`notes/vault/INDEX.md`](notes/vault/INDEX.md) is that you don't have to:
+
+1. **§1** (the one-screen map) tells you which file holds what, and how deep it goes.
+2. **§3** (per-file dossiers) gives you the claims, the killed misconceptions, and the declared gaps — enough to
+   answer most questions without opening the file.
+3. **§6** (the merged Closed / Pending / Open map) is what you check **before proposing anything**. Many obvious
+   ideas are already closed by published work.
+4. Only then open **one** vault file, and only the section §3 names as its highest-value page.
+
+For heavy multi-file lookups, dispatch the `Explore` sub-agent — its own context window, returns the conclusion.
+
+---
+
+## Evidence tags — authoritative definitions, used in every file in this draft
 
 | Tag | Meaning |
 | --- | --- |
-| `[STANDING]` | Part of **the standing candidate** (above) — the draft's current big picture. Evidence zero; held so research has a target to attack. **Replaced by a better candidate, never by an argument.** |
-| `[AUTHOR]` | The **author's own definition of the target**, in his words. Not evidence — and **not the agent's to overturn by argument.** An agent may say "this is hard to build"; it may not substitute its own picture and proceed. Only the author revises it. Lives in [`the-thought.md`](docs/the-thought.md). |
-| `[CLAIM]` | Asserted in discussion. **No evidence.** Most of this draft. |
-| `[OPEN]` | A genuine unresolved question. Nobody in this repo knows the answer. |
-| `[ARG]` | Settled *by argument* between the author and the agent — still never measured. |
-| `[CARRIED]` | A **measured** result from draft 6.0 that still stands and is being used as input. |
-| `[STRUCK]` | Explicitly rejected with a reason. **Do not re-propose without new evidence.** |
-| `[LIT]` | Points at existing outside literature that must be read before we spend our own effort. |
+| `[STANDING]` | Part of **the direction** ([`docs/direction.md`](docs/direction.md)). **Evidence zero.** Held so work has a target. **Replaced by a better position, never by an argument** — "I don't like this" is not a move; *"here is a rival picture and why it is better"* is |
+| `[AUTHOR]` | The **author's own words** for the target. Not evidence — and **not an agent's to overturn by argument.** An agent may say "this is hard to build"; it may not substitute its own picture and proceed |
+| `[CLAIM]` | Asserted. **No evidence from this repo.** Most of this draft |
+| `[LIT]` | Read literature. **⚠ Everything dated 2026 in the vault was found by search, not read in the original** — three separate files say so. Verify before citing outward |
+| `[OPEN]` | Genuinely unresolved. Nobody in this repo knows |
+| `[ARG]` | Settled *by argument* between author and agent — still never measured |
+| `[CARRIED]` | A **measured** draft-6.0 result that still stands and is being used as input |
+| `[STRUCK]` | Explicitly rejected with a reason. **Do not re-propose without new evidence** |
 
 Untagged assertions are a defect. If you add a claim, tag it.
 
@@ -82,69 +92,45 @@ Untagged assertions are a defect. If you add a claim, tag it.
 
 ## Status
 
-**Pre-research, with a standing candidate.** No experiments, no code, no roadmap. Evidence: **zero, everywhere.**
+**Pre-experiment, with a direction and six kill criteria.** No code, no runs. Evidence: **zero for every mechanism.**
 
-What changed on 2026-08-06: the draft stopped being a set of open questions with no position and acquired a **first
-decision** (above). The next move is therefore **not** an open-ended survey — it is a **reading checklist whose job
-is to find candidates that can beat the standing one.** Reading with a target, not reading to get oriented.
+What is different from the archived direction — and this is the only thing that is different:
 
-**That checklist is now written: [`reading-checklist.md`](notes/reading-checklist.md)** — tiered (T0 must / T1 should /
-T2 if-time / T3 later), with a **4-day lane** (16 h/day, ahead of a department presentation) and, for every part of
-the standing candidate, **the prior art that may already have built it** and **what would kill the move**. Its §0
-is the single highest-value page in this draft right now.
-
-The survey axes in [`open-questions.md`](docs/open-questions.md) Part 1 are still the map of what is unknown; what
-changed is their **purpose** — they are now attack surfaces on a stated position rather than a general syllabus.
-
-> **On the deleted `learning-roadmap.md`** — resolved 2026-08-06, recorded so nobody restores it. A build-first
-> roadmap did exist (six blocks, governing rule *"every block ends in a notebook that produces a number"*). **The
-> author deleted it on purpose:** *"roadmap อันเก่ามันยังไปผิด direction อยู่"* — it was written before the ladder rule
-> and the two-motion loop existed, so it was planning builds against half a picture. **Do not reconstruct it.** Its
-> pain points were harvested into [`the-thought.md`](docs/the-thought.md), which is what replaced it.
->
-> **What is commissioned instead:** a **new roadmap that is a reading checklist** — topics, books, theories, papers
-> to read or re-read in order to build a loop of thought. The author's reason, verbatim: *"ตอนนี้กุแม่งตัวเปล่าเลย ทั้งหมดคือ
-> pure intuition without anything ref … กุแค่เห็นภาพมาว่าควรจะเป็นยังไง แต่กุไม่มั่นใจว่าความคิดกุมันถูกที่สุดจริงๆ แล้วใช่มั้ย"* Not
-> open-ended reading: a checklist whose job is to test an existing intuition against what the world already knows.
-
----
-
-## The discipline (this draft's version of the build rules)
-
-1. **Search first, constrain later.** Use anything during the search — backprop, BPTT, GPU, transformers. This is
-   the project's own methodology rule 7 (*ideal first, realism later*) raised one level. `[ARG]`
-2. **But keep the cost column.** Every mechanism found gets one line: *what would it cost to make this local /
-   online / backward-free?* A **tiebreaker, never a gate**. The moat is lost by never re-imposing the constraints,
-   not by dropping them while searching. `[ARG]`
-3. **Loop metrics only.** No AA / BWT / retention / prequential accuracy as the *goal metric*. Those are precisely
-   the ruler that caused the turn. A loop is judged by loop properties (step count vs difficulty, halt calibration,
-   steps-vs-memory-size scaling).
-4. **Read before building.** The author's own words: *"we have to go learn directly how far the world has actually
-   got"*. Most of this draft's questions are answered somewhere already; find that first.
-5. **One draft-6 rule survives unchanged: failures are data.** A mechanism that does not loop is a result.
-6. **Hold a standing candidate, and attack it with rivals — not with opinions.** `[ARG]` A draft with no position
-   cannot be argued with, so it drifts; a draft with a position can be *beaten*, which is how it moves. State the
-   current big picture everywhere, mark disagreement as disagreement, and replace it only when a rival big picture
-   wins on the merits.
-
----
-
-## `docs/` vs `notes/` — two folders, two jobs. Do not mix them.
-
-| | [`docs/`](docs/) | [`notes/`](notes/) |
+| | archived | now |
 | --- | --- | --- |
-| **What** | The **frozen record** — the first decision, tagged, dated, with the reasoning and the arguments that were withdrawn | The **live working surface** — the prototype being polished |
-| **Who for** | Every agent's base. Read this to know what the position *is* | The author, mid-thought. Read this to know what he's *doing right now* |
-| **Editing** | Careful and dated. Supersede in place, never quietly rewrite; `the-turn.md` is not to be edited at all | Free. The author edits it without asking, and so may an agent he asks |
-| **Style** | Evidence tags on everything (`[STANDING]` `[AUTHOR]` `[CLAIM]` …) | No ceremony. Fresh ideas, open slots, unfinished sentences are fine |
+| The problem | asserted from intuition, **no references at all** | **diagnosed, published, causal-mediation evidence** |
+| The field | unknown | **mapped** — ~19 topics closed, 11 open and ranked |
+| The mechanisms | invented | **read** — Slot Attention, STN, DRAW, deformable, Hopfield retrieval, with known failure modes |
+| Kill criteria | none | **six, two of them phase gates** |
+| Evidence | zero | **zero** |
 
-**The same picture lives in both**, on purpose: [`docs/the-thought.md`](docs/the-thought.md) is the record,
-[`notes/the-model.md`](notes/the-model.md) is the working version. **When something in `notes/` hardens, promote it
-into `docs/` with a date.** Never edit `docs/` to match `notes/` silently — that destroys the record `docs/` exists
-to keep.
+**Next move: Phase 0** — build the pointer-chase generator, fire it at an existing VLM with **no training**, measure
+accuracy vs chain length `k` plus a blind baseline. *Kill criterion: if SOTA handles `k = 4` easily, the problem
+isn't real — stop.* → [`docs/direction.md`](docs/direction.md) §6
 
-*(`CLAUDE.md` and `README.md` stay at the draft root: `CLAUDE.md` **must** be at `draftN/` to auto-load under the
-repo's 3-layer context hierarchy, and `README.md` is the folder's front door.)*
+---
+
+## The discipline
+
+1. **Search first, constrain later.** Use anything during the search — backprop, BPTT, GPU, transformers. The
+   project's methodology rule 7 (*ideal first, realism later*) raised one level. `[ARG]`
+2. **But keep the cost column.** Every mechanism gets one line: *what would it cost to make this local / online /
+   backward-free?* A **tiebreaker, never a gate.** The moat is lost by never re-imposing the constraints, not by
+   dropping them during the search. `[ARG]`
+3. **Check [`INDEX.md`](notes/vault/INDEX.md) §6 before proposing anything.** If it is in the Closed column, it is
+   closed by published work and proposing it is a waste. If it is in Pending, say who else is on it.
+4. **Bounded-bandwidth metrics, not continual-learning metrics.** No AA / BWT / retention / prequential accuracy as
+   a goal metric — that ruler is what caused the turn away from draft 6. Judge by: **accuracy vs read-fraction**,
+   `s_t` vs `t` (does coarse-to-fine emerge), `Var_t[l_t]` (location collapse), the **slot drop test**, and
+   **sequential vs parallel-`k` at matched read budget.**
+5. **Every experiment names the kill criterion it can trip.** The six are in
+   [`docs/direction.md`](docs/direction.md) §5. An experiment that cannot fail is not an experiment.
+6. **Assume the shortcut is present until measured otherwise.** *Anything avoidable will be avoided.* Run the
+   four-point checklist ([`13-latent-space-and-shortcut.md`](notes/vault/13-latent-space-and-shortcut.md) §9.4)
+   against every task before trusting any result on it. **The architecture does not save you from a bad benchmark.**
+7. **Failures are data.** The one draft-6 rule that survives unchanged. A mechanism that does not loop is a result.
+8. **Hold a position, attack it with rivals — not with opinions.** A draft with no position cannot be argued with,
+   so it drifts. A draft with one can be *beaten*, which is how it moves. `[ARG]`
 
 ---
 
@@ -152,25 +138,31 @@ repo's 3-layer context hierarchy, and `README.md` is the folder's front door.)*
 
 | Want… | Read |
 | --- | --- |
-| **What I'm building right now, in plain terms** (living, editable) | [`notes/the-model.md`](notes/the-model.md) |
-| How to work with the department advisors on this | [`notes/advisor.md`](notes/advisor.md) |
-| **⚑ THE STANDING CANDIDATE — what a thought is, the loop's shape, the arena, the base spec** (frozen record) | [`docs/the-thought.md`](docs/the-thought.md) `[STANDING]` `[AUTHOR]` |
-| **Why we turned — the whole story, cold** (written pre-candidate; §7 superseded) | [`context.md`](docs/context.md) |
-| **The conversation that produced the turn** (historical, 2026-08-05 — do not update) | [`the-turn.md`](docs/the-turn.md) |
-| **What is unknown — now the attack surfaces on the standing candidate** | [`open-questions.md`](docs/open-questions.md) |
-| **Component-level candidate mechanisms** (subordinate to the standing candidate) | [`ideas.md`](docs/ideas.md) |
-| **What to read, in what order, and what would kill each move** | [`reading-checklist.md`](notes/reading-checklist.md) `[LIT]` |
-| **2-minute version + the 11 tripwires** | [`handoff.md`](docs/handoff.md) |
+| **⚑ THE DIRECTION — the mechanism, the kill criteria, the plan** | [`docs/direction.md`](docs/direction.md) `[STANDING]` `[AUTHOR]` |
+| **What is already known / closed / open** — check before proposing | [`notes/vault/INDEX.md`](notes/vault/INDEX.md) §6 |
+| **How deep the study actually went, per topic** | [`notes/vault/INDEX.md`](notes/vault/INDEX.md) §1, §3 |
+| The two idea files the direction came out of | [`s1-opened-topic-ideas.md`](notes/vault/s1-opened-topic-ideas.md) · [`s2-opened-topic-ideas.md`](notes/vault/s2-opened-topic-ideas.md) |
+| The shortcut diagnosis — why latent fails on images | [`13-latent-space-and-shortcut.md`](notes/vault/13-latent-space-and-shortcut.md) §4–§9 |
+| Glimpse attention end to end, and why RAM died | [`12-recurrent-visual-attention.md`](notes/vault/12-recurrent-visual-attention.md) |
+| How to work with the department advisors | [`notes/advisor.md`](notes/advisor.md) + [`s2`](notes/vault/s2-opened-topic-ideas.md) §8 (the script for this direction) |
+| **The pre-2026-08-10 position** (loop of thought) — history, never current | [`.archive/README.md`](.archive/README.md) |
+| Why we turned away from draft 6.0 (2026-08-05) — still true as history | [`.archive/docs/context.md`](.archive/docs/context.md) |
 | The folded previous line | [`../draft6.0/CLAUDE.md`](../draft6.0/CLAUDE.md) |
 | The origin of the whole idea | [`../docs/essence/the-essence2.md`](../docs/essence/the-essence2.md) |
 
 ---
 
-## ⚠ The one thing this draft is most likely to lose
+## ⚠ The three ways this draft gets lost
 
-The author's stated fear, verbatim: *"draft7.0 thesis มันอาจจะโดน push กลับไปทางเก่าได้อ่ะ"*
-
-The old way is **gravitational** — it has eleven phases of real results, a validated object, and a metric suite
-that produces clean numbers on demand. This draft has none of that, and it will feel worse to work on for a while.
-**That asymmetry is the danger, not a signal.** The tripwire list in [`handoff.md`](docs/handoff.md) exists for exactly
-this; read it before proposing anything that sounds like a return.
+1. **Pushed back to the old way.** The author's stated fear: *"draft7.0 thesis มันอาจจะโดน push กลับไปทางเก่าได้อ่ะ"*
+   Draft 6.0 is gravitational — eleven phases of real results, a validated object, and a metric suite that produces
+   clean numbers on demand. This line has none of that yet and will feel worse to work on for a while. **That
+   asymmetry is the danger, not a signal.**
+2. **Absorbed by the crowd.** *"Bolt a latent visual token onto a VLM and collect VQA points"* is **saturated** —
+   eight named systems already did it, and ICML 2026 already showed the tokens are placeholders. Any proposal that
+   drifts toward it has lost the thread. The distinction that must survive: **the latent emits coordinates and is
+   differentiable end to end** — not tool calls mediated by language.
+3. **Doing everything at once.** The author's own boxed warning. **One thing: `(l, s)`.** Then the Hopfield retina
+   as a single-variable swap. Binding waits; the part-whole decomposition idea stays **demoted to an analysis
+   section, never a method section.** The benchmark comes **first**, because it is the only deliverable that
+   survives the model failing.

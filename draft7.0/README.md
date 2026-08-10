@@ -1,104 +1,105 @@
-# draft 7.0 — the loop of thought
+# draft 7.0 — bounded-bandwidth visual reasoning
 
-> **Status: pre-research, with a standing candidate.** No experiments, no code, no roadmap. Evidence level:
-> **zero**, everywhere. Opened 2026-08-05; the first decision adopted 2026-08-06.
-
----
-
-## What this is
-
-A **set zero**. Draft 6.0 built and validated the project's first organ — a neocortex that learns online, forward-
-only, without a backward pass. Draft 7.0 goes after the thing that organ was always meant to serve and never
-touched: **a loop of thought.**
-
-Hold something in front of you. Call candidates from memory. Compare. Reject. Search again — until a signal you
-generate yourself says *stop*. At the level of **architecture**, not a language model narrating its own steps.
-
-The search runs **without** the analog / online / forward-only constraints. They are not abandoned; they are
-**re-imposed one at a time after the mechanism exists** — the project's own methodology rule (*ideal first, realism
-later*), applied at the architecture instead of the device.
-
-**Draft 6.0 is folded, not discarded.** SCFF + SLDA works, and the eleven-phase result stands. It is picked back up
-once there is a loop core to put it under.
+> **Status: pre-experiment, with a direction and six kill criteria.** No code, no runs. Evidence for every
+> mechanism: **zero**.
+> Opened 2026-08-05 · direction replaced wholesale **2026-08-10**.
 
 ---
 
-## ⚑ The standing candidate
+## The question
 
-Since 2026-08-06 this draft holds **one big picture**, and every document points at it. It lives in
-[`the-thought.md`](docs/the-thought.md).
+> ### "ต้อง optimize ยังไง ถ้า attention size เล็ก แต่โมเดลเลือกได้ว่าจะมองอะไรและจดอะไร"
+>
+> *How do you optimize when the attention size is small, but the model gets to choose what to look at and what to
+> write down?*
 
-1. **A thought** is a thesis in three parts — **goal**, an **accumulating fact register**, and `f(goal, fact)`
-   returned from memory. Concepts are **bundles of attributes** in a space where meaning adds and subtracts; a word
-   is only the shared-world handle for a bundle.
-2. **The loop** has **two motions** — hold the goal and accumulate facts until memory matches, then **tighten the
-   goal's scope** and run again. And it **never opens with the final question**: *fruit? → orange? → mandarin?*
-3. **The arena** — not a benchmark. The front half of a CNN supplies input numbers that already carry meaning, the
-   back half supplies output numbers that already carry meaning, and the loop lives between them, practising
-   thinking **with nothing hinted to it** — no language, no pre-digested abstraction ladder. A **read-bandwidth
-   limit** makes iteration structurally necessary.
+A small attention that **roams over a large real input** — glimpses — instead of a context window that swallows the
+whole thing. Underneath it, the question both halves of this work are walking toward: **what is latent space,
+actually, and how do you build one that does real work?**
 
-**It is the FIRST decision, not the final one.** The author's reason: *"มันจะเถียงกันไม่ได้ ถ้าไม่มี candidate ที่เป็นภาพ
-ใหญ่จริงๆ"* — a draft with no position cannot be argued with, so it drifts. Evidence for it is **zero**. It is
-**replaced by a better candidate, never by an argument**, and the research now underway exists to find rivals that
-can beat it.
+**This is a change of problem, not a change of solution.** The immediate consequence: every result that assumes the
+model sees everything becomes the special case `attention size = N`, rather than a competitor.
 
 ---
 
-## Why the turn happened
+## Why
 
-Phase 11 finished with the best results the project had produced — and the author did not start Phase 12 for a
-month. The reason was not in any number. It was in the **ruler**: every metric the project used (average accuracy,
-BWT, retention, energy, prequential accuracy) is one the continual-learning field shares, and **none of them can
-show whether a thinking loop is buildable**. Eleven phases of correct, honest work produced zero evidence about the
-project's actual destination.
+Latent reasoning works in text and **fails in images.** Not "works badly" — *Imagination Helps Visual Reasoning,
+But Not Yet in Latent Space* (Li et al., ICML 2026) shows by causal mediation that latent visual tokens are
+**placeholders**: `α ≈ 0`, `β ≈ 0`. Explicit text imagination beats them.
 
-The target never moved. The evidence drifted away from it, with no per-phase signal to catch it.
+**The cause is not training.** An image can be classified **in parallel, with no depth** — so a 1-hop pretrained
+path (`v → ans`, live at every layer) beats a 2-hop path starting from random (`v → z → ans`), and the optimizer is
+right to prefer it. Text does not have this problem because text is already symbolically dense; a GSM8K problem has
+no 1-hop shortcut. **Vision has no GSM8K.**
 
-Full story: [`context.md`](docs/context.md).
-
----
-
-## What is actually missing
-
-Storage, similarity and retrieval can be bought off the shelf. What nobody hands you:
-
-1. **the query update rule under rejection** — how the question changes when a candidate is rejected, so the next
-   iteration does different work (plain associative memory returns the same answer forever)
-2. **the goal update rule on acceptance** — a match ends the *rung*, not the process: the goal then tightens
-   (*is it an orange?* → *which orange?*) and the loop runs again at higher resolution
-3. **the feeling** — the self-generated signal that decides which of the two happens
-
-All `[CLAIM]`. These are the three gaps **the standing candidate has to fill**, and establishing whether the framing
-is even right is the first job.
+So the thing to change is **the objective**, not the architecture — and the read has to be bandwidth-limited, so
+that iterating is an *information bound* rather than something you hope the model chooses to do.
 
 ---
 
-## Two folders
+## What is being built — one thing, two halves
 
-- **[`docs/`](docs/) — frozen.** The first decision, tagged and dated, with the reasoning and the arguments that
-  were withdrawn. Every agent's base. Supersede in place; never quietly rewrite.
-- **[`notes/`](notes/) — live.** The prototype being polished, the reading checklist, and the advisor manual. No
-  ceremony, open slots, edited freely. **When something here hardens, it gets promoted into `docs/` with a date.**
+**The latent predicts position AND scale `(l, s)`** — the latent gets to *act* on the image.
+`z_t → (l_t, s_t) → ρ(x, l_t, s_t) → z_{t+1}`, reading from an **image pyramid** so a wide `s` is genuinely blurry
+and the model cannot cheat by zooming all the way out. Zoom out = explore, zoom in = exploit. Plot `s_t` against
+`t`: a downward slope is **coarse-to-fine that emerged rather than being imposed.**
+The gap it walks into: **DRAW learned its scale in 2015, and nobody followed for ten years.**
 
-The same picture lives in both on purpose: [`docs/the-thought.md`](docs/the-thought.md) is the record,
-[`notes/the-model.md`](notes/the-model.md) is the working version.
+That is *how a look is taken*. The other half is *where to look next* — **associative retrieval of an address**:
+`l = P·softmax(β Mᵀq)` on a thumbnail. Modern Hopfield retrieval, except it returns a **coordinate** instead of
+content, and the real thing is then read at full resolution. No gradient walk across the image, so no wall and no
+local minimum; differentiable, so no RL.
+
+**Same loop, split only because they answer different questions.** Build order: the `(l, s)` half first with a
+plain MLP, then swap the retina in as a single-variable change.
+
+> **`s1`'s object-bound dynamic latent — slot attention, binding — is deliberately *later*.** It is the
+> multi-latent generalization of the same idea (each latent holding one object *and* carrying its own `(l, s)`),
+> and it is real. But one acting latent is enough to test whether acting fixes the placeholder problem, and running
+> two unproven mechanisms together means they fail together with no way to tell which one did it.
+
+Full statement, with mechanisms, risks and the six kill criteria: **[`docs/direction.md`](docs/direction.md)**.
 
 ---
 
-## Read in this order
+## The plan
 
-| # | File | What it is |
+| Phase | What | Kill criterion |
 | --- | --- | --- |
-| 0 | [`notes/the-model.md`](notes/the-model.md) | **what I'm building right now**, in plain terms — the fastest way in |
-| 1 | [`handoff.md`](docs/handoff.md) | two-minute arrival + **the 11 tripwires** (how this draft gets pushed back to the old way) |
-| 2 | [`the-thought.md`](docs/the-thought.md) | **⚑ THE STANDING CANDIDATE** — what a thought is, the loop's shape, the arena, and the base spec. Read before designing, reading or proposing anything |
-| 2b | [`reading-checklist.md`](notes/reading-checklist.md) | what to read, tiered, with a **4-day lane** — and for every move, **the prior art that may already have built it** |
-| 3 | [`context.md`](docs/context.md) | why we turned — the full narrative *(written before the candidate existed; §7 is superseded)* |
-| 4 | [`open-questions.md`](docs/open-questions.md) | what is unknown — now the **attack surfaces** on the standing candidate — plus the struck list |
-| 5 | [`ideas.md`](docs/ideas.md) | **component-level** candidate mechanisms, subordinate to the standing candidate; all unvalidated |
-| 6 | [`the-turn.md`](docs/the-turn.md) | the 2026-08-05 discussion record *(historical — deliberately not updated)* |
-| — | [`CLAUDE.md`](CLAUDE.md) | operating rules for agents working in this draft |
+| **0** (1–2 wk) | Build the **pointer-chase** benchmark — a linked list rendered as an image, chain length `k` on a dial. Fire it at an existing VLM **with no training.** Measure accuracy vs `k` + a blind baseline | SOTA handles `k = 4` easily → the problem isn't real → **stop** |
+| **1** (~1 mo) | The smallest model that could work: glance → address retrieval → `(l_t, s_t)` → pyramid read → loop. One latent vector, no LLM, no pretraining. Baseline that matters: **parallel-`k`** | sequential ≯ parallel → no reasoning is happening → **go fix the dataset, not the model** |
+| **2** | Real VLM, adaptive halting, V\*Bench / HR-Bench | **do not start here** — nothing is debuggable at this end |
 
-**Next move:** run [`reading-checklist.md`](notes/reading-checklist.md) — reading whose job is to produce **rivals that
-can beat the standing candidate**, with a target rather than for orientation.
+**Phase 0 is insurance:** the model failing still leaves a benchmark other people can use.
+
+---
+
+## Where things are
+
+| | |
+| --- | --- |
+| [`docs/direction.md`](docs/direction.md) | **⚑ the position** — dated, tagged, with what would kill it |
+| [`notes/vault/`](notes/vault/) | **the evidence base** — 15 study notes, ~770 KB, three days |
+| [`notes/vault/INDEX.md`](notes/vault/INDEX.md) | **start here for the vault** — depth map, per-file dossiers, and the merged Closed/Pending/Open status of the field. **Do not read raw vault files to get oriented** |
+| [`notes/advisor.md`](notes/advisor.md) | how to work with the department advisors |
+| [`CLAUDE.md`](CLAUDE.md) | operating rules for agents in this draft |
+| [`.archive/`](.archive/README.md) | **the pre-2026-08-10 position** (the loop of thought) — history, never cited as current |
+
+---
+
+## What happened on 2026-08-10
+
+The draft's previous position — *the loop of thought*: a thought as goal + fact register + `f(goal, fact)`, a
+two-motion loop, the ladder rule, an arena between two halves of a CNN — was held deliberately at evidence zero, as
+**the first decision, not the final one**, so that research would have something to attack. The author's own note on
+what those documents were:
+
+> ของพวกนั้นเป็นเเค่ direction ที่ตั้งมาไว้ให้ debate เพื่อค้นคว้าข้อมูล เเบบไม่มีอะไร ref เลยเฉยๆ เเล้วส่วนใหญ่โดนตีตกไปหมดเเล้ว
+
+Three days of study produced the rivals. The position was **replaced whole and dated**, which is exactly what the
+draft said it would do when that happened. What survived is named in [`docs/direction.md`](docs/direction.md) §7 —
+the read-bandwidth limit above all, which is no longer a side condition but the centre of the whole direction.
+
+**And one thing did not change:** the evidence level. It was zero before and it is zero now. The difference is that
+the *problem* is no longer invented.
